@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$carInfo = $block->getCarInfo();
+$carsList = $carInfo->getCarsList();
+$id = $this->getRequest()->getParam('id');
+?>
+<form class="form carprofile"
+      action="<?= $escaper->escapeUrl(isset($id) ? $carInfo->getSaveUrl() . "?id=" . $id : $carInfo->getSaveUrl()) ?>"
+      id="customer-carprofile-form"
+      method="post"
+      data-hasrequired="<?php  echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <div class="field cars required">
+            <label class="label" for="car_id"><span><?= __('Select Your Car') ?></span></label>
+            <div class="control">
+                <select name="car_id" id="car_id" data-validate="{required:true, 'validate-select':true}">
+                    <option value=""><?= __('Please Select') ?></option>
+                    <?php foreach($carsList['cars'] as $car): ?>
+                        <?php if(!empty($car['id'])): ?>
+                            <option value="<?= $car['id'] ?>" <?=(!empty($id) && $car['id'] == $id) ? 'selected' : "" ?>><?= $car['make'].' '.$car['model'] ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?php  echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+                <span><?php  echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>

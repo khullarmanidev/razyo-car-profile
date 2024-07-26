@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.car-data {
+    margin-bottom: 5px;
+}
+
+.car-data img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.submit, .edit-btn{
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-btn{
+    background-color: #4CAF50;
+}
+
+.submit {
+    background-color: #c90113;
+}
+
+.submit:hover {
+    background-color: #45a049;
+}

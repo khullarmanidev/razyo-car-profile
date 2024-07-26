@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Razoyo\CarProfile\Api\CustomerCarProfileRepositoryInterface" type="Razoyo\CarProfile\Model\CustomerCarProfileRepository"/>
+	<preference for="Razoyo\CarProfile\Api\Data\CustomerCarProfileInterface" type="Razoyo\CarProfile\Model\CustomerCarProfile"/>
+	<preference for="Razoyo\CarProfile\Api\Data\CustomerCarProfileSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+</config>

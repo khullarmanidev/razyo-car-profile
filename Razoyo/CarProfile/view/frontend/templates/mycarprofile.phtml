@@ -1,0 +1,70 @@
+<?php
+/**
+ * @var Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$carInfo = $block->getCarInfo();
+$customerCars = $carInfo->getCarByCustomerId();
+
+?>
+
+<div class="message"></div>
+
+<div class="container">
+    <?php
+    if(count($customerCars)>0){
+        $carsList = $carInfo->getCarsListById($customerCars['car_id']);
+        $car = $carsList['car'];
+        ?>
+            <div class="card">
+                    <div class="car-data"><img src="<?= $escaper->escapeUrl($car['image']) ?>" alt="car_image"></div>
+                    <div class="car-data"><strong>Year: </strong><span><?= $escaper->escapeHtml($car['year']) ?></span></div>
+                    <div class="car-data"><strong>Make: </strong><span><?= $escaper->escapeHtml($car['make']) ?></span></div>
+                    <div class="car-data"><strong>Model: </strong><span><?= $escaper->escapeHtml($car['model']) ?></span></div>
+                    <div class="car-data"><strong>Price: </strong><span><?= $escaper->escapeHtml($car['price']) ?></span></div>
+                    <div class="car-data"><strong>Seats: </strong><span><?= $escaper->escapeHtml($car['seats']) ?></span></div>
+                    <div class="car-data">
+                        <span><a href="<?= $escaper->escapeUrl($block->getUrl('razoyocarprofile/customer/index').'?id='.$car['id']) ?>" class="edit-btn" data-element="<?= $escaper->escapeHtml($car['id']) ?>" type="submit">Edit</a></span>
+                        <span><button class="submit" data-element="<?= $escaper->escapeHtml($car['id']) ?>" type="submit">Delete</button></span>
+                    </div>
+
+            </div>
+    <?php }
+    else{
+        echo "No record found";
+    }
+    ?>
+
+</div>
+
+<script>
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            $('.submit').click(function(e) {
+
+                var data = {
+                    id:$(".submit").attr("data-element")
+                }
+                if (confirm("Are you sure to delete the car?")){
+                    $.ajax({
+                        url: '<?php echo $block->getUrl('razoyocarprofile/customer/delete'); ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        success: function(response) {
+                            location.reload();
+                            console.log(response.message);
+                            // Handle the response
+                        },
+                        error: function(xhr, status, error) {
+                            location.reload();
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+
+            });
+        });
+    });
+</script>
+

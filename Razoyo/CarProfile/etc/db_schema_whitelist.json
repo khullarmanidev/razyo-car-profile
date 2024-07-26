@@ -1,0 +1,12 @@
+{
+    "razoyo_customercarprofile": {
+        "column": {
+            "customercarprofile_id": true,
+            "car_id": true,
+            "customer_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

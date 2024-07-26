@@ -1,0 +1,22 @@
+{
+    "name": "razoyo/module-carprofile",
+    "description": "Creating car list for may account section",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mani Khullar",
+            "email": "khullarmanidev6@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Razoyo\\CarProfile\\": ""
+        }
+    }
+}
